@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Lead List{% endblock title %}
+{% block content %}
+      <div class="row">
+        <div class="column">
+        <h1>
+        This is the list of all leads we have
+        </h1></div>
+        <div class="column">
+        <div class="row">
+        <div class="column">
+        {% if request.user.is_organisor %}
+        <button class="flex ml-auto text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded" onclick="window.location.href='{% url "leads:lead-create" %}'">Create</button>
+        {% endif %}
+        </div>
+        <div class="column">
+        <button class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded" onclick="window.location.href='{% url "leads:lead-card-view" %}'">Card View</button>
+        </div>
+      </div>
+      </div>
+      </div>
+    <hr />
+    <table>
+  <tr>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Agent Assigned</th>
+     {% if request.user.is_organisor %}
+    <th></th>
+    {% endif %}
+
+  </tr>
+  {% for lead in leads %}
+        <tr>
+    <th><a href="{% url "leads:lead-detail" lead.pk %}"><u class="flex ml-auto text-blue">{{lead.first_name}} {{lead.last_name}}</u></a></th>
+    <th>{{lead.age}}</th>
+    <th>{{lead.agent}}</th>
+   {% if request.user.is_organisor %}
+    <th><div class="row">
+    <div class="column"> <button class="flex ml-auto text-black bg-yellow-300 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded" onclick="window.location.href='{% url "leads:lead-update" lead.pk %}'">Update</button></div>
+    <div class="column"><button class="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded" onclick="window.location.href='{% url "leads:lead-delete" lead.pk %}'">Delete</button></div>
+    
+    </div></th>
+    {% endif %}
+  </tr>
+        {% endfor %}
+  </table>
+    {% endblock content %}

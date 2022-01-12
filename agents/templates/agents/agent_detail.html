@@ -1,0 +1,22 @@
+
+  {% extends "base.html" %}
+  {% block title %}Detailed View{% endblock title %}
+  {% block content %}
+    <button class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded" onclick="window.location.href='{% url "agents:agent-list" %}'">Back</button>
+    <hr />
+    <h1>
+    This is the detail of {{agent.user.username}}
+    </h1>
+    <table>
+  <tr>
+    <th>Name</th>
+    
+  </tr>
+ 
+        <tr>
+    <th>{{ agent.user.username }}</th>
+    
+  </tr>
+      
+  </table>
+{% endblock content %}

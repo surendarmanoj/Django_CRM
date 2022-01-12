@@ -1,0 +1,14 @@
+{% extends "base.html"%}
+{% block title %}Delete View{% endblock title %}
+{% block content %}
+     <a href="{% url "agents:agent-list" %}">Back</a>
+        <h1>Are you sure you want to delete {{agent.user.username}}</h1>
+       
+        <hr />
+        <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Delete</button>
+        </form>
+        <script src="" async defer></script>
+{% endblock content %}

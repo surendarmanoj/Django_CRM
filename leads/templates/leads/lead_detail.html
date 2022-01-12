@@ -1,0 +1,26 @@
+
+  {% extends "base.html" %}
+  {% block title %}Detailed View{% endblock title %}
+  {% block content %}
+    <button class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded" onclick="window.location.href='{% url "leads:lead-list" %}'">Back</button>
+    <hr />
+    <h1>
+    This is the detail of {{lead.first_name}} {{lead.last_name}}
+    </h1>
+    <table>
+  <tr>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Agent Assigned</th>
+    <th>Category</th>
+  </tr>
+ 
+        <tr>
+    <th>{{lead.first_name}} {{lead.last_name}}</th>
+    <th>{{lead.age}}</th>
+    <th>{{lead.agent}}</th>
+    <th><button class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded" onclick="window.location.href='{% url "leads:lead-category-update" lead.pk %}'">Update Category</button></th>
+  </tr>
+      
+  </table>
+{% endblock content %}
